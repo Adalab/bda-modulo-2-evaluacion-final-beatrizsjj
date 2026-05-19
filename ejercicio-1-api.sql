@@ -1,0 +1,2 @@
+CREATE SCHEMA peliculas_evaluacion;
+USE peliculas_evaluacion;
