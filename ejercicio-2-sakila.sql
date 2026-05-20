@@ -50,15 +50,15 @@ GROUP BY rating;
 -- Encuentra la cantidad total de películas alquiladas por cada cliente y muestra el ID del cliente, su
 -- nombre y apellido junto con la cantidad de películas alquiladas.
 
-SELECT c.customer_id, c.first_name, c.last_name, COUNT(*) AS films_per_customer
+SELECT c.customer_id, c.first_name, c.last_name, COUNT(r.rental_id) AS films_per_customer
 FROM customer c
 LEFT JOIN rental r ON r.customer_id= c.customer_id
-GROUP BY c.customer_id;
+GROUP BY c.customer_id, c.first_name, c.last_name;
 
 
 -- Encuentra la cantidad total de películas alquiladas por categoría y muestra el nombre de la categoría 
 -- junto con el recuento de alquileres.
-SELECT c.name, COUNT(rental_id) AS total_rental
+SELECT c.name, COUNT(r.rental_id) AS total_rental
 FROM category c
 LEFT JOIN film_category fc ON c.category_id = fc.category_id
 LEFT JOIN film f ON f.film_id = fc.film_id
